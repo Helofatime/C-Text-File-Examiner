@@ -1,0 +1,85 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+int main() {
+    ///Variable Declarations
+
+    //Vowel count Storage
+  
+    int a = 0;
+    int e = 0;
+    int i = 0;
+    int o = 0;
+    int u = 0;
+
+    int totalVowel;  //total 'a e i o u' characters
+    double totalPercent;  //percentage of nonvowels 
+    char letter;  // Char hold letter being checked
+    int totalChar = 0;  //count total non vowels chars
+  
+   // input output stream variable
+  
+   string fileName;
+   ifstream inFile;
+   ofstream outFile;
+   ///Input
+
+   cout << "Enter file name for vowel count: ";
+   cin >> fileName;
+   inFile.open(fileName);
+   /// Process
+  
+   if(inFile.fail()){
+        cout << "Unable to read file exiting. . .";
+   }else{
+     while(!inFile.eof()){
+       inFile >> letter;
+       if(inFile.eof()){
+         break;
+       }
+       if(letter != ' '){
+         totalChar++;
+         switch(letter){
+          case 'a':
+          case'A':
+           a++;
+           break;
+          case 'e':
+          case 'E':
+           e++;
+           break;
+          case 'i':
+          case 'I': 
+           i++;
+           break;
+          case 'o':
+          case 'O':
+            o++;
+           break;
+          case 'u':
+          case 'U':  
+            u++;
+           break;
+         }  //end of vowel check switch statement
+       }  //  end of whitespace checker if statement
+     }  //  end of eof while loop
+    }  //end of file open sucess if loop
+    totalVowel = a + e + i + o + u;
+    totalPercent = totalVowel/totalChar;
+    ///Output
+
+    if(totalVowel == 0){
+      cout << "No vowels found . . .";
+      }else{
+      cout << "Total non-whitespace character read: " << totalChar << endl;
+      cout << "Total vowels read: " << totalVowel << endl;
+      cout << "'a' or 'A': " << a << endl;
+      cout << "'e' or 'E': " << e << endl;
+      cout << "'i' or 'I': " << i << endl;
+      cout << "'o' or 'O': " << o << endl;
+      cout << "'u' or 'U': " << u << endl;
+      cout << "Of all the non-whitespace characters read " << totalPercent << "% were vowels";
+      }
+    return 0; 
+}
